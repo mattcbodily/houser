@@ -21,7 +21,7 @@ class StepTwo extends Component {
 
     render(){
         return(
-            <div>
+            <div className = "Steptwo">
                 <div>
                     <h4>Image URL</h4>
                     <input onChange = {(e) => this.handleImageInput(e.target.value)}

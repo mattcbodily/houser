@@ -45,7 +45,7 @@ class StepOne extends Component {
 
     render(){
         return (
-        <div>    
+        <div className = "Stepone"> 
             <div>
                 <h3>Property name</h3>
                 <input onChange = {(e) => this.handleNameInput(e.target.value)}

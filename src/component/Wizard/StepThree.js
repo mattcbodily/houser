@@ -44,7 +44,7 @@ class StepThree extends Component {
 
     render(){
         return(
-            <div>
+            <div className = "Stepthree">
                 <div>
                     <h4>Monthly Mortgage Amount</h4>
                     <input onChange = {(e) => this.handleMortgageInput(e.target.value)}

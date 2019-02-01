@@ -7,6 +7,9 @@ const ctrl = require('./controller');
 const app = express();
 app.use(json());
 
+var path = require('path');
+ app.use(express.static(path.join(__dirname, './public')));
+
 massive(process.env.CONNECTION_STRING)
 .then(db => app.set('db', db))
 .catch(err => console.log('Error!', err))

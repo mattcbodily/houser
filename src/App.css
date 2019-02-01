@@ -12,7 +12,7 @@
 }
 
 .Dashboard {
-  height: 100vh;
+  height: 90vh;
   width: 750px;
   color: #3B5249;
   font-size: 25px;
@@ -33,6 +33,27 @@
   margin-top: 10px;
   background-color: #DEDEDE;
   font-size: 15px;
+}
+
+.Stepone {
+  height: 100vh;
+  width: 750px;
+  background-color: #E5F4EC;
+  display: inline-block;
+}
+
+.Steptwo {
+  height: 100vh;
+  width: 750px;
+  background-color: #E5F4EC;
+  display: inline-block;
+}
+
+.Stepthree {
+  height: 100vh;
+  width: 750px;
+  background-color: #E5F4EC;
+  display: inline-block;
 }
 
 h4{
