@@ -6,9 +6,9 @@ module.exports = {
     },
 
     addHouse: (req, res, next) => {
-        const { name, address, city, state, zip } = req.body;
+        const { name, address, city, state, zip, img, mortgage, rent } = req.body;
 
-        req.app.get('db').create_house([name, address, city, state, zip])
+        req.app.get('db').create_house([name, address, city, state, zip, img, mortgage, rent])
         .then(house => res.status(200).send(house))
         .catch(err => res.status(500).send({errorMessage: 'Error!'}, console.log(err)))
     }

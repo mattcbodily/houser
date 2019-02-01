@@ -12,6 +12,7 @@ const initialState = {
 const UPDATE_STEPONE = 'UPDATE_STEPONE';
 const UPDATE_STEPTWO = 'UPDATE_STEPTWO';
 const UPDATE_STEPTHREE = 'UPDATE_STEPTHREE';
+const CANCEL_BUTTON = 'CANCEL_BUTTON';
 
 export default function reducer(state = initialState, action){
     switch(action.type){
@@ -23,6 +24,9 @@ export default function reducer(state = initialState, action){
 
     case UPDATE_STEPTHREE:
         return Object.assign({}, state, action.payload)
+
+    case CANCEL_BUTTON:
+        return Object.assign({}, action.payload)
 
     default:
         return state;
@@ -47,5 +51,12 @@ export function updateStepThree(everything){
     return {
         type: UPDATE_STEPTHREE,
         payload: everything
+    }
+}
+
+export function cancelEverything(){
+    return {
+        type: CANCEL_BUTTON,
+        payload: initialState
     }
 }

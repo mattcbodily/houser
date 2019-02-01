@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import { cancelEverything } from '../../ducks/reducer';
 import { updateStepThree } from '../../ducks/reducer';
 
 class StepThree extends Component {
@@ -25,17 +27,23 @@ class StepThree extends Component {
         this.setState({rent: this.props.rent})
     }
 
-    // handleCreateHouse(){
-    //     const newHouse = {
-    //         name: this.state.name,
-    //         address: this.state.address,
-    //         city: this.state.city,
-    //         state: this.state.state,
-    //         zip: this.state.zip
-    //     }
-    //     axios.post('/api/house', newHouse)
-    //     .then(res => {})
-    // }
+    handleCreateHouse(){
+        const newHouse = {
+            name: this.props.name,
+            address: this.props.address,
+            city: this.props.city,
+            state: this.props.state,
+            zip: this.props.zip,
+            img: this.props.img,
+            mortgage: this.state.mortgage,
+            rent: this.state.rent
+        }
+        axios.post('/api/house', newHouse)
+        .then((res) => {
+
+        })
+        this.props.cancelEverything(this.state)
+    }
 
     render(){
         return(
@@ -51,7 +59,7 @@ class StepThree extends Component {
                            value = {this.state.rent}/>
                 </div>
                 <Link to = '/wizard/step2'><button onClick = {() => this.props.updateStepThree(this.state)}>Previous Step</button></Link>
-                <Link to = '/'><button>Complete</button></Link>
+                <Link to = '/'><button onClick = {() => this.handleCreateHouse()}>Complete</button></Link>
             </div>
         )
     }
@@ -59,13 +67,19 @@ class StepThree extends Component {
 
 function mapStatetoProps(state){
     return {
+        name: state.mortgage,
+        address: state.address,
+        city: state.city,
+        state: state.state,
+        zip: state.zip,
         mortgage: state.mortgage,
         rent: state.rent
     }
 }
 
 const mapDispatchtoProps = {
-    updateStepThree
+    updateStepThree,
+    cancelEverything
 }
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(StepThree);
