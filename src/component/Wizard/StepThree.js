@@ -39,9 +39,6 @@ class StepThree extends Component {
             rent: this.state.rent
         }
         axios.post('/api/house', newHouse)
-        .then((res) => {
-
-        })
         this.props.cancelEverything(this.state)
     }
 
@@ -67,11 +64,12 @@ class StepThree extends Component {
 
 function mapStatetoProps(state){
     return {
-        name: state.mortgage,
+        name: state.name,
         address: state.address,
         city: state.city,
         state: state.state,
         zip: state.zip,
+        img: state.img,
         mortgage: state.mortgage,
         rent: state.rent
     }

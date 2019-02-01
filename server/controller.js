@@ -11,5 +11,12 @@ module.exports = {
         req.app.get('db').create_house([name, address, city, state, zip, img, mortgage, rent])
         .then(house => res.status(200).send(house))
         .catch(err => res.status(500).send({errorMessage: 'Error!'}, console.log(err)))
+    },
+
+    deleteHouse: (req, res, next) => {
+        const { params } = req;
+        req.app.get('db').delete_house(params.id)
+        .then(house => res.status(200).send(house))
+        .catch(err => res.status(500).send({errorMessage: 'Error!'}, console.log(err)))
     }
 }

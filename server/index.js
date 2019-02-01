@@ -15,6 +15,8 @@ app.get('/api/houses', ctrl.getHouses);
 
 app.post('/api/house', ctrl.addHouse);
 
+app.delete('/api/house/:id', ctrl.deleteHouse);
+
 
 const PORT = process.env.SERVER_PORT;
 app.listen(PORT, () => {console.log(`Simulating on ${PORT}`)})
