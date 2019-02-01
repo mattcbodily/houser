@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { updateStepThree } from '../../ducks/reducer';
 
 class StepThree extends Component {
     constructor(){
@@ -16,6 +18,11 @@ class StepThree extends Component {
 
     handleRentInput(val){
         this.setState({rent: val})
+    }
+
+    componentDidMount(){
+        this.setState({mortgage: this.props.mortgage})
+        this.setState({rent: this.props.rent})
     }
 
     // handleCreateHouse(){
@@ -43,11 +50,22 @@ class StepThree extends Component {
                     <input onChange = {(e) => this.handleRentInput(e.target.value)}
                            value = {this.state.rent}/>
                 </div>
-                <Link to = '/wizard/step2'><button>Previous Step</button></Link>
+                <Link to = '/wizard/step2'><button onClick = {() => this.props.updateStepThree(this.state)}>Previous Step</button></Link>
                 <Link to = '/'><button>Complete</button></Link>
             </div>
         )
     }
 }
 
-export default StepThree;
+function mapStatetoProps(state){
+    return {
+        mortgage: state.mortgage,
+        rent: state.rent
+    }
+}
+
+const mapDispatchtoProps = {
+    updateStepThree
+}
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(StepThree);

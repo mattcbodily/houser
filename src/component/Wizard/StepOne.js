@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { updateStepOne } from '../../ducks/reducer';
 
 class StepOne extends Component {
     constructor(){
@@ -33,6 +35,14 @@ class StepOne extends Component {
         this.setState({zip: val})
     }
 
+    componentDidMount(){
+        this.setState({name: this.props.name})
+        this.setState({address: this.props.address})
+        this.setState({city: this.props.city})
+        this.setState({state: this.props.state})
+        this.setState({zip: this.props.zip})
+    }
+
     render(){
         return (
         <div>    
@@ -57,10 +67,24 @@ class StepOne extends Component {
                 <input onChange = {(e) => this.handleZipInput(e.target.value)}
                        value = {this.state.zip}/>
             </div>
-            <Link to = '/wizard/step2'><button>Next Step</button></Link>
+            <Link to = '/wizard/step2'><button onClick = {() => this.props.updateStepOne(this.state)}>Next Step</button></Link>
         </div>
         )
     }
 }
 
-export default StepOne;
+function mapStatetoProps(state) {
+    return {
+        name: state.name,
+        address: state.address,
+        city: state.city,
+        state: state.state,
+        zip: state.zip
+    }
+}
+
+const mapDispatchtoProps = {
+    updateStepOne
+}
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(StepOne);
